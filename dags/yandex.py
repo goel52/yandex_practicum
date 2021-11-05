@@ -89,7 +89,7 @@ with DAG('ubs', description='ubs', schedule_interval='*/1 * * * *', catchup=Fals
     load_data = PythonOperator(task_id='load_data', python_callable=load_data)
     create_cloud_table = PostgresOperator(
         task_id="create_clouds_value_table",
-        postgres_conn_id="database_PG",
+        postgres_conn_id="ya",
         sql="""
                                 CREATE TABLE IF NOT EXISTS ubs (
                                 base text NOT NULL,
@@ -269,7 +269,7 @@ with DAG('ubs', description='ubs', schedule_interval='*/1 * * * *', catchup=Fals
 
     insert_in_table = PostgresOperator(
         task_id="insert_clouds_table",
-        postgres_conn_id="database_PG",
+        postgres_conn_id="ya",
         sql=[f"""INSERT INTO ubs VALUES(
                                 '{{{{ti.xcom_pull(key='ubs', task_ids=['transform_data'])[0].iloc[0]['base']}}}}',
                                 '{{{{ti.xcom_pull(key='ubs', task_ids=['transform_data'])[0].iloc[0]['date']}}}}',

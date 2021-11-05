@@ -1,0 +1,14 @@
+1. Запустить docker: docker-compose -f docker-compose-CeleryExecutor.yml up -d
+2. Узнать хост постгресса: ввести docker ps, скопировать id процесса postgres, ввести Docker inspect -f ‘{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}} <ID>
+Например - Docker inspect -f ‘{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}} e85feb4c12ae
+Перейти в браузер
+Открыть http://localhost:8080/admin/connection/
+Добавить connection
+Conn Id ya
+Conn Type Postgres
+Host 172.21.0.3 (результат вывода команды Docker inspect -f ‘{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}} <ID>)
+Login ya
+Password ya
+Port 5432
+
+
